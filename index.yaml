@@ -9,6 +9,6 @@ entries:
     name: riak
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/blob/main/riak-0.1.0.tgz
+    - https://github.com/merigo-co/helm_repository/raw/main/riak-0.1.0.tgz
     version: 0.1.0
 generated: "2022-11-27T19:12:45.20722723+01:00"
