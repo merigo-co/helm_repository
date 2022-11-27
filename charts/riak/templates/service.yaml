@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "riak.fullname" . }}
+  name: {{ include "riak.fullname" . }}-kv
   labels:
     {{- include "riak.labels" . | nindent 4 }}
 spec:
