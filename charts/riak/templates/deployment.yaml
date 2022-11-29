@@ -33,6 +33,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name:  CLUSTER_NAME
+              value: riakkv
+            - name: SERVICE_8087_NAME
+              value:  riak-kv
+            - name: SERVICE_8098_NAME
+              value: riak-admin
           ports:
             - name: http
               containerPort: 8089
