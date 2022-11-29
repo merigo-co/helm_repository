@@ -35,17 +35,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name:  CLUSTER_NAME
-              value: riakkv
+              value: "riakkv"
             - name: SERVICE_8087_NAME
-              value:  riak-kv
+              value: "riak-kv"
             - name: SERVICE_8098_NAME
-              value: riak-admin
+              value: "riak-admin"
           ports:
-            - name: http
+            - name: http-main
               containerPort: 8089
               protocol: TCP
-            - name: http7
+            - name: http-secondary
               containerPort: 8087
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
