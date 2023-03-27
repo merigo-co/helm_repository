@@ -3,12 +3,22 @@ entries:
   riak:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-11-27T19:12:45.208173951+01:00"
+    created: "2023-03-27T12:58:24.425605517+02:00"
     description: A Helm chart for Kubernetes
-    digest: 9c4179e23eadb487513fc7e6e94d296c745a4501a285abd36d5783f06a2b9fd9
+    digest: ecf30e00e0ebdf710be975a374be6afc48de1e0c6b4330d8f56279c94ab16853
     name: riak
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/raw/main/riak-0.1.0.tgz
+    - https://github.com/merigo-co/helm_repository/riak-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-27T19:12:45.20722723+01:00"
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-03-27T12:58:24.425904702+02:00"
+    description: A Helm chart for Kubernetes
+    digest: 0e2ee849d0092a0a9dd20b915e7df5010c4c2faeb63953db36a3ecee45352278
+    name: riak
+    type: application
+    urls:
+    - https://github.com/merigo-co/helm_repository/charts/riak-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-03-27T12:58:24.424957006+02:00"
