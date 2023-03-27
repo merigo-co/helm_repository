@@ -42,10 +42,10 @@ spec:
               value: "riak-admin"
           ports:
             - name: http-main
-              containerPort: 8089
+              containerPort: 8087
               protocol: TCP
             - name: http-secondary
-              containerPort: 8087
+              containerPort: 8089
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

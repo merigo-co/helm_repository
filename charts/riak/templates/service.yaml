@@ -8,11 +8,11 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.main.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.main.port }}
       protocol: TCP
       name: http-main
     - port: {{ .Values.service.secondary.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.secondary.port }}
       protocol: TCP
       name: http-secondary
   selector:
