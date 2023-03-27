@@ -3,7 +3,7 @@ entries:
   merigo:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-03-27T13:02:30.081305075+02:00"
+    created: "2023-03-27T13:26:40.142995049+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -14,11 +14,14 @@ entries:
     - name: riak
       repository: https://merigo-co.github.io/helm_repository/
       version: 0.1.0
+    - name: consul
+      repository: https://helm.releases.hashicorp.com
+      version: 1.1.0
     - name: traefik
       repository: https://traefik.github.io/charts
       version: 20.8.0
     description: A Helm chart for Kubernetes
-    digest: 8c726c2783d82d1bce49cdc711b3df9a1fbf8ee122b0dd8f6c4201f5fac07a19
+    digest: e3750c2ed5b55432b7e0950b06663a569a277e1fbe06b11a02fd1abfde80c9b3
     maintainers:
     - email: devops@merigo.co
       name: Merigo
@@ -27,17 +30,17 @@ entries:
     name: merigo
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/merigo-0.1.0.tgz
+    - https://merigo-co.github.io/helm_repository/merigo-0.1.0.tgz
     version: 0.1.0
   riak:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-03-27T13:02:30.081896789+02:00"
+    created: "2023-03-27T13:26:40.143611314+02:00"
     description: A Helm chart for Kubernetes
     digest: ecf30e00e0ebdf710be975a374be6afc48de1e0c6b4330d8f56279c94ab16853
     name: riak
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/riak-0.1.0.tgz
+    - https://merigo-co.github.io/helm_repository/riak-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-27T13:02:30.055621604+02:00"
+generated: "2023-03-27T13:26:40.095684366+02:00"
