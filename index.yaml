@@ -27,7 +27,7 @@ entries:
     name: merigo
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/merigo-0.1.0.tgz
+    - https://merigo-co.github.io/helm_repository/merigo-0.1.0.tgz
     version: 0.1.0
   riak:
   - apiVersion: v2
@@ -38,6 +38,6 @@ entries:
     name: riak
     type: application
     urls:
-    - https://github.com/merigo-co/helm_repository/riak-0.1.0.tgz
+    - https://merigo-co.github.io/helm_repository/riak-0.1.0.tgz
     version: 0.1.0
 generated: "2023-03-27T13:02:30.055621604+02:00"
