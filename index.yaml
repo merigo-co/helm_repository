@@ -3,7 +3,7 @@ entries:
   merigo:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-03-27T13:26:40.142995049+02:00"
+    created: "2023-03-27T13:36:45.865069972+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -21,7 +21,38 @@ entries:
       repository: https://traefik.github.io/charts
       version: 20.8.0
     description: A Helm chart for Kubernetes
-    digest: e3750c2ed5b55432b7e0950b06663a569a277e1fbe06b11a02fd1abfde80c9b3
+    digest: a5b45ab765a170139f82935fcbe046d2ce2227d3216a4f40ccaa1b34e92a41dd
+    maintainers:
+    - email: devops@merigo.co
+      name: Merigo
+    - email: devops@superhash.co
+      name: Superhash
+    name: merigo
+    type: application
+    urls:
+    - https://merigo-co.github.io/helm_repository/merigo-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-03-27T13:36:45.83620358+02:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.2
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.3.11
+    - name: riak
+      repository: https://merigo-co.github.io/helm_repository/
+      version: 0.1.0
+    - name: consul
+      repository: https://helm.releases.hashicorp.com
+      version: 1.1.0
+    - name: traefik
+      repository: https://traefik.github.io/charts
+      version: 20.8.0
+    description: A Helm chart for Kubernetes
+    digest: 28d01438c2062c8b41efb4206038538478aaf254839fe55f432f7348c469f677
     maintainers:
     - email: devops@merigo.co
       name: Merigo
@@ -35,7 +66,7 @@ entries:
   riak:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-03-27T13:26:40.143611314+02:00"
+    created: "2023-03-27T13:36:45.866170005+02:00"
     description: A Helm chart for Kubernetes
     digest: ecf30e00e0ebdf710be975a374be6afc48de1e0c6b4330d8f56279c94ab16853
     name: riak
@@ -43,4 +74,4 @@ entries:
     urls:
     - https://merigo-co.github.io/helm_repository/riak-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-27T13:26:40.095684366+02:00"
+generated: "2023-03-27T13:36:45.812255487+02:00"
