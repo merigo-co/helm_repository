@@ -3,7 +3,7 @@ entries:
   merigo:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-03-27T13:39:46.409047252+02:00"
+    created: "2023-04-26T14:17:16.744101121+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -30,11 +30,11 @@ entries:
     name: merigo
     type: application
     urls:
-    - https://merigo-co.github.io/helm_repository/merigo-0.2.0.tgz
+    - merigo-co.github.io/helm_repository/merigo-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-03-27T13:39:46.373935497+02:00"
+    created: "2023-04-26T14:17:16.712820168+02:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -44,7 +44,7 @@ entries:
       version: 17.3.11
     - name: riak
       repository: https://merigo-co.github.io/helm_repository/
-      version: 0.1.0
+      version: 0.2.0
     - name: consul
       repository: https://helm.releases.hashicorp.com
       version: 1.1.0
@@ -61,17 +61,27 @@ entries:
     name: merigo
     type: application
     urls:
-    - https://merigo-co.github.io/helm_repository/merigo-0.1.0.tgz
+    - merigo-co.github.io/helm_repository/merigo-0.1.0.tgz
     version: 0.1.0
   riak:
   - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2023-04-26T14:17:16.745899021+02:00"
+    description: A Helm chart for Kubernetes
+    digest: d5c4e20a7d9b1810cabf617a68e7f8d42d3f05bd27df054da2c6dc60ce7c31ac
+    name: riak
+    type: application
+    urls:
+    - merigo-co.github.io/helm_repository/riak-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-03-27T13:39:46.409848349+02:00"
+    created: "2023-04-26T14:17:16.745571015+02:00"
     description: A Helm chart for Kubernetes
     digest: ecf30e00e0ebdf710be975a374be6afc48de1e0c6b4330d8f56279c94ab16853
     name: riak
     type: application
     urls:
-    - https://merigo-co.github.io/helm_repository/riak-0.1.0.tgz
+    - merigo-co.github.io/helm_repository/riak-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-27T13:39:46.335722541+02:00"
+generated: "2023-04-26T14:17:16.658891154+02:00"
