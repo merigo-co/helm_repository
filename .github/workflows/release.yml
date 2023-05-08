@@ -23,12 +23,18 @@ jobs:
         run: |
           git config user.name "$GIT_USER"
           git config user.email "$GIT_EMAIL"
-          
-      - name: Add repositories
+  
+      - name: Add Helm repos
         run: |
-          for dir in $(ls -d charts/*/); do
-            helm dependency list $dir 2> /dev/null | tail +2 | head -n -1 | awk '{ print "helm repo add " $1 " " $3 }' | while read cmd; do $cmd; done
-          done
+          helm repo add riak https://merigo-co.github.io/helm_repository
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add consul https://helm.releases.hashicorp.com
+          helm repo add treafik  https://traefik.github.io/charts
+#     - name: Add repositories
+ #       run: |
+ #         for dir in $(ls -d charts/*/); do
+ #           helm dependency list $dir 2> /dev/null | tail +2 | head -n -1 | awk '{ print "helm repo add " $1 " " $3 }' | while read cmd; do $cmd; done
+ #         done
 
       - name: Install Helm
         uses: azure/setup-helm@v3
