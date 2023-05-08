@@ -44,4 +44,4 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.RELEASE_TOKEN }}"
         with:
-          charts_repo_url: https://merigo-co.github.io/helm_repository/
+          install_only: true
