@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  serviceName: {{ .Release.Name }}-service
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: {{ .Values.containerName }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+          {{- range .Values.service.ports }}
+          - containerPort: {{ .port }}
+            protocol: {{ .protocol }}
+            name: {{ .name }}
+          {{- end }}
+        volumeMounts:
+        - name: data-merigo
+          mountPath: /usr/local/bin/merigo/src
+        env: 
+          {{- range $v := .Values.env }}
+          - name:  {{ $v.name }}
+            value: "{{ $v.value }}"
+          {{- end }}  
+  volumeClaimTemplates:
+  - metadata:
+      name: data-merigo
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.storage.volumeSize }}
+      storageClassName: {{ .Values.storage.storageClassName }}

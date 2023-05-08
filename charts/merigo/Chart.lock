@@ -1,0 +1,18 @@
+dependencies:
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.2
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.3.11
+- name: riak
+  repository: https://merigo-co.github.io/helm_repository/
+  version: 0.1.0
+- name: consul
+  repository: https://helm.releases.hashicorp.com
+  version: 1.1.0
+- name: traefik
+  repository: https://traefik.github.io/charts
+  version: 20.8.0
+digest: sha256:42001d5a0331c9c6ae4df10e9f773632d9be9daa5bb6695128f4ad11514968ca
+generated: "2023-03-27T13:25:30.68269004+02:00"

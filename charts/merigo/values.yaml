@@ -1,0 +1,166 @@
+# Default values for merigo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+appName: msde
+
+image:
+  repository: ghcr.io/merigo-co/merigo_dev_packages/msde-vm-dev
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "msde-vm-dev-docker-3.5.0"
+
+imagePullSecrets: []
+nameOverride: "merigo"
+fullnameOverride: "merigo"
+containerName : "msde"
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "merigo"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+storage:
+   storageClassName: standard
+   volumeSize: 1Gi
+
+securityContext: {}
+
+env:
+  - name: LC_ALL
+    value: "en_US.UTF-8"
+  - name: LANG 
+    value: 'en_US.UTF-8'
+  - name: LANGUAGE
+    value: 'en_US.UTF-8'
+  - name: SERVICE_8090_NAME
+    value: 'msde-web'
+  - name: SERVICE_8090_CHECK_TCP
+    value:  "true"
+  - name: SERVICE_8090_CHECK_INTERVAL
+    value: '3s'
+  - name: SERVICE_8001_NAME
+    value: 'msde-erlang-distribution'
+  - name: ERL_DIST_PORT
+    value: "8001"
+
+service:
+  type: NodePort
+  ports:
+  - name: main
+    port: 8088
+    protocol: TCP
+  - name: secondary
+    port: 8089
+    protocol: TCP
+  - name: third
+    port: 8090
+    protocol: TCP
+  - name: fourth
+    port: 8091
+    protocol: TCP
+  - name: fifth
+    port: 8095
+    protocol: TCP
+  - name: sixth
+    port: 50051
+    protocol: TCP
+  - name: seventh
+    port: 8080
+    protocol: TCP
+
+
+ingress:
+  enabled: false
+  className: merigo-nlb
+  host: merigo.superhash.co
+
+resources: {}
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+redis:
+  architecture: standalone
+#  master:
+#    persistence: 
+#      storageClass: gp3-wc
+
+
+postgresql:
+  image:
+    tag: 9.6
+  primary:
+    scripts:
+      init.sql: |
+        CREATE USER pbs WITH PASSWORD 'chamberecho183';
+        ALTER USER pbs CREATEDB;
+        CREATE DATABASE pbs;
+        CREATE DATABASE game;
+        CREATE DATABASE custom;
+        CREATE DATABASE chat;
+        GRANT ALL PRIVILEGES ON DATABASE pbs TO pbs;
+        GRANT ALL PRIVILEGES ON DATABASE game TO pbs;
+        GRANT ALL PRIVILEGES ON DATABASE custom TO pbs;
+        GRANT ALL PRIVILEGES ON DATABASE chat TO pbs;
+#    persistence:
+#      storageClass: gp3-wc
+  auth:
+    postgresPassword: chamberecho183
+
+consul:
+  global:
+    enabled: false
+  server: 
+    enabled: true
+  ui:
+    enabled: true
+    service:
+      type: NodePort
+  syncCatalog:
+    enabled: true
+  client:
+    enabled: true
+  connectInject:
+    enabled: false
+  #extraEnvVars: 
+    #- name: "CONSUL_BIND_INTERFACE"
+    #  value: eth0
+    #- name: "CONSUL_CLIENT_INTERFACE"
+    #  value: eth0
+crypto:
+  enabled: "false"
+
+  
+traefik:
+  providers:
+      consulCatalog:
+        enabled: true
+  logs:
+    general:
+      level: DEBUG
+  additionalArguments:
+    - "--api=true"
+    - "--api.insecure=true"
+    - "--api.dashboard=true"
+    - "--providers.consulcatalog=true"
+    - "--providers.consulcatalog.endpoint.address=consul-server.merigo:8500"
+    - "--providers.consulcatalog.endpoint.tls.insecureskipverify=true"

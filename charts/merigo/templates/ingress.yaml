@@ -1,0 +1,60 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "<chartname>.fullname" . }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8090
+        path: /portal
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8091
+        path: /auth
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8089
+        path: /cms/info
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8089
+        path: /cms/host
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8089
+        path: /cms/download
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+              number: 8090
+        path: /cms
+        pathType: Prefix
+      - backend:
+          service:
+            name: {{ include "merigo.fullname" . }}
+            port:
+              number: 8089
+        path: /fe/game
+        pathType: Prefix
+{{- end }}

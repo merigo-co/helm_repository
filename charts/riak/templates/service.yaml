@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "riak.fullname" . }}-kv-vm-dev
+  labels:
+    {{- include "riak.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.main.port }}
+      targetPort: {{ .Values.service.main.port }}
+      protocol: TCP
+      name: http-main
+    - port: {{ .Values.service.secondary.port }}
+      targetPort: {{ .Values.service.secondary.port }}
+      protocol: TCP
+      name: http-secondary
+  selector:
+    {{- include "riak.selectorLabels" . | nindent 4 }}

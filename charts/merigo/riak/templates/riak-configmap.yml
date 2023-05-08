@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  counters.dt: |
+    counter
+  maps.dt: |
+    map
+  sets.dt: |
+    set
+kind: ConfigMap
+metadata:
+  name: riak-schemas
