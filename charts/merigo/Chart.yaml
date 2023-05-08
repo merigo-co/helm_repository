@@ -27,6 +27,8 @@ maintainers:
     email: devops@merigo.co
   - name: Superhash
     email: devops@superhash.co
+  - name: Oliver
+    email: pinter.oliver@xyz.co
 
 dependencies:
   - name: postgresql
