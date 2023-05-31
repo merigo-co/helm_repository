@@ -7,10 +7,10 @@ replicaCount: 1
 appName: msde
 
 image:
-  repository: ghcr.io/merigo-co/merigo_dev_packages/msde-vm-dev
+  repository: ghcr.io/merigo-co/merigo_dev_packages/msde-vm-dev ## nightly image repo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "msde-vm-dev-docker-3.5.0"
+  tag: "msde-vm-dev-docker-3.5.0" ##nightly image tag
 
 imagePullSecrets: []
 nameOverride: "merigo"
