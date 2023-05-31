@@ -4,9 +4,6 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "nightly" ]
   schedule:
     - cron: "0 17 * * *"
 
@@ -33,3 +30,4 @@ jobs:
         chart-path: charts/merigo
         namespace: merigo
         name: merigo
+      if: github.ref == 'refs/heads/nightly-build'
