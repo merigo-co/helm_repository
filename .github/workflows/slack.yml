@@ -30,7 +30,7 @@ jobs:
           
             {
 
-              "channel":"alert_testing",
+              "channel":"alert-testing",
               "blocks": [
                 {
                   "type":"section",
