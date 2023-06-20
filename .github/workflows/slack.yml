@@ -1,0 +1,66 @@
+name: Slack notification CI
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ pipeline ]
+  pull_request:
+    branches: [ pipeline ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      
+      - name: Send custom JSON data to Slack 
+        id: slack
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+  
+          payload: |
+          
+            {
+
+              "channel":"k8s_github_test",
+              "blocks": [
+                {
+                  "type":"section",
+                  "text": {
+                      "type":"mrkdwn",
+                      "text": "Block Action build result: *${{ job.status }}* :ghost: \n${{ github.event.pull_request.html_url || github.event.head_commit.url }}\n User who prompted the build: ${{ github.actor }}\n Branch name: ${{ github.ref }} :ghost:"
+                         }
+                },
+                {
+                  "type":"divider"
+                },
+                {
+                  "type":"section",
+                  "text": {
+                    "type":"mrkdwn",
+                    "text":"Check build with button"
+                  },
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "check",
+                      "emoji": true
+                    },
+                    "value":"click_me_123",
+                    "url": "${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+                    "action_id":"button-action"
+                    }
+                }
+              ]
+            }
+        
+        env:
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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 #${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
