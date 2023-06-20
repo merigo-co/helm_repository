@@ -3,9 +3,9 @@ name: Slack notification CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ pipeline ]
+    branches: [ nightly-build ]
   pull_request:
-    branches: [ pipeline ]
+    branches: [ nightly-build ]
 
 jobs:
   # This workflow contains a single job called "build"
