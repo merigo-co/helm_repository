@@ -17,19 +17,38 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: ghcr.io/merigo-co/helm-eks:latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v1
     
-    - name: Deploy Helm
-      uses: bitovi/github-actions-deploy-eks-helm@v1.2.4
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
-        cluster-name: ${{ secrets.CLUSTER_NAME }}
-        config-files: .github/values/nightly-values.yaml
-        chart-path: charts/merigo
-        namespace: merigo
-        name: merigo
+          aws-access-key-id: ${{ secrets.NIGHTLY_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.NIGHTLY_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.NIGHTLY_AWS_REGION }}
+    
+    - name: Get cluster kubeconfig
+      run: |
+        aws eks update-kubeconfig --region ${{ secrets.NIGHTLY_AWS_REGION }} --name sample-cluster
+        
+    - name: Upgrade Helm chart
+      run: |
+        helm upgrade --install merigo ./charts/merigo --namespace merigo --values .github/values/nightly-values.yml
+
+    # Check if the upgrade command failed
+    - name: Check Helm upgrade status
+      id: helm-upgrade
+      run: |
+        if [ $? -ne 0 ]; then
+          echo "::set-output name=failed::true"
+        fi
+
+    # Delete and install Helm chart if upgrade failed
+    - name: Delete and install Helm chart
+      if: steps.helm-upgrade.outputs.failed == 'true'
+      run: |
+        helm delete merigo --namespace merigo
+        helm install merigo ./charts/merigo --namespace merigo --values .github/values/nightly-values.yml
