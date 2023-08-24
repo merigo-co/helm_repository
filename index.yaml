@@ -30,7 +30,7 @@ entries:
     name: merigo
     type: application
     urls:
-    - merigo-co.github.io/helm_repository/merigo-0.2.0.tgz
+    - merigo-0.2.0.tgz
     version: 0.2.0
   riak:
   - apiVersion: v2
