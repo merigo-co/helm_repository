@@ -32,37 +32,6 @@ entries:
     urls:
     - merigo-co.github.io/helm_repository/merigo-0.2.0.tgz
     version: 0.2.0
-  - apiVersion: v2
-    appVersion: 1.0.0
-    created: "2023-04-26T14:17:16.712820168+02:00"
-    dependencies:
-    - name: postgresql
-      repository: https://charts.bitnami.com/bitnami
-      version: 12.1.2
-    - name: redis
-      repository: https://charts.bitnami.com/bitnami
-      version: 17.3.11
-    - name: riak
-      repository: https://merigo-co.github.io/helm_repository/
-      version: 0.2.0
-    - name: consul
-      repository: https://helm.releases.hashicorp.com
-      version: 1.1.0
-    - name: traefik
-      repository: https://traefik.github.io/charts
-      version: 20.8.0
-    description: A Helm chart for Kubernetes
-    digest: 28d01438c2062c8b41efb4206038538478aaf254839fe55f432f7348c469f677
-    maintainers:
-    - email: devops@merigo.co
-      name: Merigo
-    - email: devops@superhash.co
-      name: Superhash
-    name: merigo
-    type: application
-    urls:
-    - merigo-co.github.io/helm_repository/merigo-0.1.0.tgz
-    version: 0.1.0
   riak:
   - apiVersion: v2
     appVersion: 0.2.0
